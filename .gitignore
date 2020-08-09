@@ -1,3 +1,6 @@
 images/
+output/
 model/
+patients/
 *~
+*.nii.gz

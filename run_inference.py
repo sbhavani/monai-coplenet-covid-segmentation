@@ -27,7 +27,7 @@ OUTPUT_FOLDER = os.getenv('OUTPUT_FOLDER') or os.path.join(".", "output")  # wri
 
 
 def main():
-    images = sorted(glob(os.path.join(IMAGE_FOLDER, "case*.nii.gz")))
+    images = sorted(glob(os.path.join(IMAGE_FOLDER, "*.nii.gz")))
     val_files = [{"img": img} for img in images]
 
     # define transforms for image and segmentation
@@ -57,6 +57,7 @@ def main():
             print(f"Inference on {idx+1} of {len(data_loader)}")
             val_images = val_data["img"].to(device)
             # define sliding window size and batch size for windows inference
+            print(val_images.shape)
             slice_shape = np.ceil(np.asarray(val_images.shape[3:]) / 32) * 32
             roi_size = (20, int(slice_shape[0]), int(slice_shape[1]))
             sw_batch_size = 2

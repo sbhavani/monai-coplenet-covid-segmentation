@@ -1,13 +1,10 @@
 version: '3'
-
 services:
 
   app:
     build: .
     image: covid-seg
-    environment:
-     - FLASK_DEBUG=1
-    command: python preprocess.py
+    command: python preprocess.py #run_inference.py 
     environment:
      - PATIENT_FOLDER=./patients
      - IMAGE_FOLDER=./images
@@ -18,6 +15,10 @@ services:
      - ./output:/app/output
     networks:
      - backend
-
+    deploy:
+     resources:
+       limits:
+         cpus: '0.001'
+         memory: 8GB
 networks:
   backend:
