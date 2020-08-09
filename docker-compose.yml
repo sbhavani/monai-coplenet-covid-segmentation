@@ -7,10 +7,14 @@ services:
     image: covid-seg
     environment:
      - FLASK_DEBUG=1
-    command: python run_inference.py
+    command: python preprocess.py
+    environment:
+     - PATIENT_FOLDER=./patients
+     - IMAGE_FOLDER=./images
     volumes:
      - ./model/:/app/model
      - ./images:/app/images
+     - ./patients:/app/patients
      - ./output:/app/output
     networks:
      - backend

@@ -3,7 +3,7 @@ FROM pytorch/pytorch
 
 RUN apt update
 #RUN apt install build-essential -y
-RUN apt install git emacs -y
+RUN apt install libgdcm-tools git emacs -y
 
 COPY requirements.txt /
 
@@ -13,6 +13,4 @@ COPY *.py /app/
 
 WORKDIR /app
 
-RUN mkdir model
-RUN mkdir images
-RUN mkdir output
+RUN mkdir {model,images,output,patients}
