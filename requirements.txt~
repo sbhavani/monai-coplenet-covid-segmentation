@@ -1,0 +1,2 @@
+torch
+git+https://github.com/Project-MONAI/MONAI@0.2.0

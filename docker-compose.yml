@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  app:
+    build: .
+    image: covid-seg
+    environment:
+     - FLASK_DEBUG=1
+    command: python run_inference.py
+    volumes:
+     - ./model/:/app/model
+     - ./images:/app/images
+     - ./output:/app/output
+    networks:
+     - backend
+
+networks:
+  backend:

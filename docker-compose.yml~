@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+
+  app:
+    build: .
+    image: covid-seg
+    environment:
+     - FLASK_DEBUG=1
+    command: python run_inference.py
+    volumes:
+     - /home/ec2-user/monai-coplenet-covid-segmentation/model/:/app/model/
+     - /home/ec2-user/monai-coplenet-covid-segmentation/images:/app/images
+    networks:
+     - backend
+
+networks:
+  backend:
